@@ -1,0 +1,594 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+section h2 {
+  color: white;
+  place-items: center;
+}
+
+/* Navigation */
+nav {
+  background-color: #007bff;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+form input,
+form button {
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+form input[type="file"] {
+  padding: 0.4rem;
+}
+
+form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 1.1rem;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Table for Listing Events */
+section.event-list {
+  margin: 2rem auto;
+  max-width: 1000px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+section.event-list h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #007bff;
+}
+
+table.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table.event-table th,
+table.event-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table.event-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+table.event-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table.event-table td a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+table.event-table td a:hover {
+  background-color: #e2e2e2;
+}
+
+.event-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.event-actions a {
+  color: #fff;
+  background-color: #007bff;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.event-actions a:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Responsive Styling for Table */
+@media (max-width: 768px) {
+  table.event-table th,
+  table.event-table td {
+    font-size: 0.9rem;
+  }
+
+  section.event-list {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+}
+
+/* Styling untuk tabel di list_events.php */
+.table-container {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 1000px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+td a {
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Table Container */
+.table-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  overflow-x: auto; /* Mengatasi overflow pada layar kecil */
+}
+
+/* Tabel Daftar Peserta */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+table th,
+table td {
+  padding: 0.8rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+table a:hover {
+  text-decoration: underline;
+}
+
+/* Styling untuk galeri */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.gallery-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.gallery-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Styling untuk tabel feedback */
+.feedback-table {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.feedback-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.feedback-table th,
+.feedback-table td {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.feedback-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.feedback-table td {
+  background-color: #f9f9f9;
+}
+
+/* Styling untuk form feedback */
+form {
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Menambahkan gambar latar belakang untuk seluruh halaman */
+body {
+  background-image: url("../assets/bg.jpg");
+  background-size: cover; /* Gambar latar belakang menutupi seluruh layar */
+  background-position: center; /* Posisi gambar di tengah layar */
+  background-repeat: no-repeat; /* Agar gambar tidak terulang */
+  background-attachment: fixed; /* Agar gambar tetap saat halaman digulir */
+}
+
+/* Menjadikan semua tabel di halaman menjadi transparan */
+table {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Putih dengan transparansi 30% */
+  border-collapse: collapse; /* Menghilangkan jarak antar border sel */
+  width: 100%; /* Lebar tabel penuh */
+}
+
+/* Menjadikan border tabel transparan */
+table,
+th,
+td {
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Border dengan transparansi */
+}
+
+/* Styling untuk header tabel */
+th {
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.5
+  ); /* Warna latar belakang header dengan transparansi */
+  color: white;
+  padding: 1rem;
+}
+
+/* Styling untuk sel tabel */
+td {
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Menambahkan efek hover untuk baris tabel */
+tr:hover {
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.1
+  ); /* Efek hover dengan latar belakang transparan */
+}
+
+/* Form dan elemen input dengan transparansi */
+form {
+  background-color: rgba(255, 255, 255, 0.3); /* Latar belakang transparan */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+/* Label */
+form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Input fields */
+form input,
+form textarea,
+form button {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Latar belakang input transparan */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Border dengan transparansi */
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Button */
+form button {
+  background-color: rgba(0, 123, 255, 0.7); /* Tombol transparan biru */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+form button:hover {
+  background-color: rgba(0, 123, 255, 0.9); /* Efek hover pada tombol */
+}
+
+/* Efek focus pada input dan textarea */
+form input:focus,
+form textarea:focus {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fokus dengan latar belakang lebih terang */
+  border-color: rgba(0, 123, 255, 1); /* Ubah border saat fokus */
+}
+
+/* Styling untuk textarea (input teks yang panjang) */
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Gaya untuk gambar dan tombol hapus */
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.gallery-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+
+.delete-btn:active {
+  background-color: #b71c1c;
+}
+
+/* Gaya untuk tombol Logout */
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* gaya untuk tombol login */
+.login-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.login-btn:hover {
+  background-color: #d32f2f;
+}
