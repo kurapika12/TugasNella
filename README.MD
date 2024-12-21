@@ -6,7 +6,7 @@ Proyek ini adalah bagian dari tugas yang diberikan kepada Nella. Proyek ini bert
 ## Instalasi
 1. Clone repositori ini:
     ```bash
-    git clone https://github.com/username/TugasNella.git
+    git clone https://github.com/kurapika12/TugasNella.git
     ```
 2. Masuk ke direktori proyek:
     ```bash
