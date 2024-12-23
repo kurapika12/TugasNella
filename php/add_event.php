@@ -1,6 +1,6 @@
 <?php
 // Pastikan file db_config.php disertakan dengan benar
-include('db_config.php');
+include('../php/db_config.php');
 
 // Proses untuk menambahkan event baru
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
