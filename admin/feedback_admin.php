@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
                         <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['title']; ?></td>
-                                <td><?php echo $row['rating']; ?>/5</td>
+                                <td><?php echo $row['rating']; ?>/10</td>
                                 <td><?php echo $row['comment']; ?></td>
                             </tr>
                         <?php } ?>

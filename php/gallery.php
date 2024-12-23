@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media'])) {
     $description = $_POST['description'];
 
     // Tentukan direktori penyimpanan file
-    $upload_dir = 'uploads/';
+    $upload_dir = '../php/uploads/'; // Pastikan path relatif sesuai dengan struktur folder Anda
     $file_name = basename($file['name']);
     $upload_path = $upload_dir . $file_name;
     $file_type = strtolower(pathinfo($upload_path, PATHINFO_EXTENSION));
@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['media'])) {
         echo "<p>File yang diunggah tidak valid. Hanya file gambar dan video yang diperbolehkan.</p>";
     }
 
-     // Redirect untuk mencegah resubmission form
-     header('Location: gallery.php');
-     exit;
+    // Redirect untuk mencegah resubmission form
+    header('Location: gallery.php');
+    exit;
 }
 
 // Ambil data gambar dan video yang sudah diunggah
@@ -86,7 +86,7 @@ $media = $result->fetchAll(PDO::FETCH_ASSOC);
         <div class="gallery-container">
             <?php foreach ($media as $item) { ?>
                 <div class="gallery-item">
-                    <?php if (in_array(pathinfo($item['image_path'], PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif'])) { ?>
+                    <?php if (in_array(pathinfo($item['image_path'], PATHINFO_EXTENSION), ['jpg', 'JPG', 'jpeg', 'png', 'gif'])) { ?>
                         <img src="<?php echo $item['image_path']; ?>" alt="Image" />
                     <?php } elseif (in_array(pathinfo($item['image_path'], PATHINFO_EXTENSION), ['mp4', 'mov'])) { ?>
                         <video controls>

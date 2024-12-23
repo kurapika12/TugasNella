@@ -20,10 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':event_id', $event_id);
 
     if ($stmt->execute()) {
-        echo "<p>Peserta berhasil ditambahkan!</p>";
+        echo "<script>
+                document.getElementById('alert-message').innerHTML = 'Peserta berhasil ditambahkan!';
+                document.getElementById('alert-message').style.backgroundColor = '#4CAF50';  // Green for success
+                document.getElementById('alert-message').style.display = 'block';
+            </script>";
     } else {
-        echo "<p>Gagal menambahkan peserta.</p>";
+        echo "<script>
+                document.getElementById('alert-message').innerHTML = 'Gagal menambahkan peserta.';
+                document.getElementById('alert-message').style.backgroundColor = '#f44336';  // Red for error
+                document.getElementById('alert-message').style.display = 'block';
+            </script>";
     }
+    
+    
 }
 ?>
 
@@ -69,6 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Tambah Peserta</button>
         </form>
+        <div id="alert-message" style="display: none; padding: 10px; margin: 20px 0; background-color: #f44336; color: white; border-radius: 5px;">
+            Peserta berhasil ditambahkan!
+        </div>
+
     </section>  
 </body>
 </html>

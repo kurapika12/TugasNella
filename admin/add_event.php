@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $query = "INSERT INTO events (title, date, time, location, theme, poster) 
                       VALUES ('$title', '$date', '$time', '$location', '$theme', '$poster_name')";
             mysqli_query($conn, $query);
-            header("Location: index.php");
+            header("Location: dashboard.php");
         }
     }
 }

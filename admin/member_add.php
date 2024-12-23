@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_member'])) {
     $stmt = $pdo->prepare($insert_query);
     $stmt->execute([$name, $email, $contact, $address, $role]);
 
-    header('Location: list_members.php'); // Redirect ke halaman daftar anggota setelah submit
+    header('Location: member_add.php'); // Redirect ke halaman daftar anggota setelah submit
     exit;
 }
 ?>
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_member'])) {
 
     <section>
         <h2>Formulir Tambah Anggota</h2>
-        <form method="POST" action="add_member.php">
+        <form method="POST" action="member_add.php">
             <label for="name">Nama Anggota:</label>
             <input type="text" name="name" id="name" required>
             <br>

@@ -2,17 +2,21 @@
 // Include koneksi database
 include('../php/db_config.php');
 
+// Proses hapus peserta
+if (isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $delete_query = "DELETE FROM participants WHERE id = ?";
+    $stmt = $pdo->prepare($delete_query);
+    $stmt->execute([$delete_id]);
+
+    echo "<script>alert('Anggota berhasil dihapus');</script>";
+    header("Location: participants_admin.php");
+    exit;
+}
+
 // Ambil data peserta dari database
 $query = "SELECT * FROM participants";
 $result = mysqli_query($conn, $query);
-
-// Proses hapus peserta
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $delete_query = "DELETE FROM participants WHERE id = $delete_id";
-    mysqli_query($conn, $delete_query);
-    header("Location: list_participants.php");  // Redirect setelah hapus
-}
 ?>
 
 <!DOCTYPE html>
@@ -54,17 +58,21 @@ if (isset($_GET['delete_id'])) {
                     <th>Aksi</th>
                 </tr>
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                <tr>
+                <tr id="participant-<?php echo $row['id']; ?>">
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['event_id']; ?></td>
                     <td>
-                        <a href="list_participants.php?delete_id=<?php echo $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus peserta ini?')">Hapus</a>
+                        <form method="POST" action="participants_admin.php" onsubmit="return confirm('Apakah Anda yakin ingin menghapus peserta ini?')">
+                            <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
+                            <button type="submit" class="delete-btn">Hapus</button>
+                        </form>
                     </td>
                 </tr>
                 <?php } ?>
             </table>
         </div>
     </section>
+
 </body>
 </html>

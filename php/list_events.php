@@ -39,7 +39,6 @@ $result = mysqli_query($conn, $query);
                         <th>Judul</th>
                         <th>Tanggal</th>
                         <th>Lokasi</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,10 +47,6 @@ $result = mysqli_query($conn, $query);
                         <td><?php echo htmlspecialchars($row['title']); ?></td>
                         <td><?php echo htmlspecialchars($row['date']); ?></td>
                         <td><?php echo htmlspecialchars($row['location']); ?></td>
-                        <td>
-                            <a href="edit_event.php?id=<?php echo $row['id']; ?>" class="btn-edit">Edit</a>
-                            <a href="list_events.php?delete_id=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this event?')">Hapus</a>
-                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -60,14 +55,3 @@ $result = mysqli_query($conn, $query);
     </section>
 </body>
 </html>
-
-<?php
-// Hapus event jika parameter delete_id ada
-if (isset($_GET['delete_id'])) {
-    $delete_id = $_GET['delete_id'];
-    $delete_query = "DELETE FROM events WHERE id = $delete_id";
-    mysqli_query($conn, $delete_query);
-    header("Location: list_events.php"); // Redirect setelah menghapus
-    exit;
-}
-?>

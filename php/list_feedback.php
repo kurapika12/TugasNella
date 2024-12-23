@@ -62,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
             </select>
             <br>
 
-            <label for="rating">Rating (1-5):</label>
-            <input type="number" name="rating" id="rating" min="1" max="5" required>
+            <label for="rating">Rating (1-10):</label>
+            <input type="number" name="rating" id="rating" min="1" max="10" required>
             <br>
 
             <label for="comment">Komentar:</label>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
                         <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
                             <tr>
                                 <td><?php echo $row['title']; ?></td>
-                                <td><?php echo $row['rating']; ?>/5</td>
+                                <td><?php echo $row['rating']; ?>/10</td>
                                 <td><?php echo $row['comment']; ?></td>
                             </tr>
                         <?php } ?>
