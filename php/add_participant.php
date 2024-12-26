@@ -20,30 +20,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':event_id', $event_id);
 
     if ($stmt->execute()) {
+        // Ambil nama kegiatan yang baru didaftarkan
+        $event_query = "SELECT title FROM events WHERE id = :event_id";
+        $event_stmt = $pdo->prepare($event_query);
+        $event_stmt->bindParam(':event_id', $event_id);
+        $event_stmt->execute();
+        $event = $event_stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Menyimpan nama kegiatan ke session untuk diakses oleh JavaScript
         echo "<script>
-                document.getElementById('alert-message').innerHTML = 'Peserta berhasil ditambahkan!';
-                document.getElementById('alert-message').style.backgroundColor = '#4CAF50';  // Green for success
-                document.getElementById('alert-message').style.display = 'block';
+                var eventTitle = '" . addslashes($event['title']) . "';
+                document.addEventListener('DOMContentLoaded', function() {
+                    var modal = document.getElementById('successModal');
+                    var modalMessage = document.getElementById('modalMessage');
+                    modalMessage.innerText = 'Peserta berhasil mendaftar untuk kegiatan: ' + eventTitle;
+                    modal.style.display = 'block';
+                });
             </script>";
-    } else {
-        echo "<script>
-                document.getElementById('alert-message').innerHTML = 'Gagal menambahkan peserta.';
-                document.getElementById('alert-message').style.backgroundColor = '#f44336';  // Red for error
-                document.getElementById('alert-message').style.display = 'block';
+     // Redirect setelah sukses untuk menghindari resubmission data
+     header("Location: " . $_SERVER['PHP_SELF']);
+     exit;
+        } else {
+            echo "<script>
+                alert('Gagal menambahkan peserta.');
             </script>";
+        }
     }
-    
-    
-}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Peserta</title>
     <link rel="stylesheet" href="../assets/styles.css">
+    <style>
+        /* Styling for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -79,10 +125,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button type="submit">Tambah Peserta</button>
         </form>
-        <div id="alert-message" style="display: none; padding: 10px; margin: 20px 0; background-color: #f44336; color: white; border-radius: 5px;">
-            Peserta berhasil ditambahkan!
-        </div>
+    </section>
 
-    </section>  
+    <!-- Modal for displaying success message -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('successModal').style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

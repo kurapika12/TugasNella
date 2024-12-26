@@ -9,13 +9,17 @@ if (isset($_POST['delete_id'])) {
     $stmt = $pdo->prepare($delete_query);
     $stmt->execute([$delete_id]);
 
-    echo "<script>alert('Anggota berhasil dihapus');</script>";
+    echo "<script>alert('Peserta berhasil dihapus');</script>";
     header("Location: participants_admin.php");
     exit;
 }
 
-// Ambil data peserta dari database
-$query = "SELECT * FROM participants";
+// Ambil data peserta beserta nama kegiatan
+$query = "
+    SELECT participants.id, participants.name, participants.email, events.title AS event_title
+    FROM participants
+    JOIN events ON participants.event_id = events.id
+";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -61,7 +65,7 @@ $result = mysqli_query($conn, $query);
                 <tr id="participant-<?php echo $row['id']; ?>">
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['event_id']; ?></td>
+                    <td><?php echo $row['event_title']; ?></td>
                     <td>
                         <form method="POST" action="participants_admin.php" onsubmit="return confirm('Apakah Anda yakin ingin menghapus peserta ini?')">
                             <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">

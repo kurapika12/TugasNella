@@ -16,7 +16,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
     $stmt = $pdo->prepare($insert_query);
     $stmt->execute([$event_id, $rating, $comment]);
 
-    header('Location: list_feedback.php'); // Refresh halaman setelah submit
+    header('Location: feedback_admin.php'); // Refresh halaman setelah submit
+    exit;
+}
+
+// Proses hapus feedback
+if (isset($_POST['delete_feedback'])) {
+    $feedback_id = $_POST['delete_feedback'];
+
+    // Hapus feedback dari database
+    $delete_query = "DELETE FROM feedback WHERE id = ?";
+    $stmt = $pdo->prepare($delete_query);
+    $stmt->execute([$feedback_id]);
+
+    header('Location: feedback_admin.php'); // Refresh halaman setelah hapus
     exit;
 }
 ?>
@@ -49,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
 
     <section>
         <!-- Tabel untuk menampilkan Feedback -->
-        <!-- Daftar Feedback -->
         <div class="feedback-table">
             <table>
                 <thead>
@@ -57,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
                         <th>Judul Kegiatan</th>
                         <th>Rating</th>
                         <th>Komentar</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,11 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit_feedback'])) {
                                 <td><?php echo $row['title']; ?></td>
                                 <td><?php echo $row['rating']; ?>/10</td>
                                 <td><?php echo $row['comment']; ?></td>
+                                <td>
+                                    <!-- Tombol hapus -->
+                                    <form method="POST" action="feedback_admin.php" onsubmit="return confirm('Apakah Anda yakin ingin menghapus feedback ini?')">
+                                        <input type="hidden" name="delete_feedback" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" class="delete-btn">Hapus</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php } ?>
                     <?php } else { ?>
                         <tr>
-                            <td colspan="3">Tidak ada feedback tersedia.</td>
+                            <td colspan="4">Tidak ada feedback tersedia.</td>
                         </tr>
                     <?php } ?>
                 </tbody>

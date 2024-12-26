@@ -54,8 +54,8 @@ $feedback = $pdo->query($feedback_query)->fetch(PDO::FETCH_ASSOC);
             <label for="location">Lokasi:</label>
             <input type="text" id="location" name="location" required>
 
-            <label for="theme">Tema (Opsional):</label>
-            <input type="text" id="theme" name="theme">
+            <label for="theme">Tema:</label>
+            <input type="text" id="theme" name="theme" required>
 
             <label for="poster">Poster Kegiatan:</label>
             <input type="file" id="poster" name="poster" accept="image/*" required>
