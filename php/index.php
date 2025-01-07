@@ -13,7 +13,7 @@ include('db_config.php');
 </head>
 <body>
     <header>
-        <h1>Selamat Datang di Website Manajemen Kegiatan</h1>
+        <h1>WELCOM TO OUR Community</h1>
     </header>
     
     <nav>

@@ -14,7 +14,7 @@ body {
 
 /* Header */
 header {
-  background-color: #007bff;
+  background-color: #00ff99;
   color: white;
   padding: 0.5rem;
   text-align: center;
@@ -32,7 +32,7 @@ section h2 {
 
 /* Navigation */
 nav {
-  background-color: #007bff;
+  background-color: #00ff91;
   padding: 1rem;
 }
 

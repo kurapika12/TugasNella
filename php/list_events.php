@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
         header {
             text-align: center;
             padding: 0.5rem;
-            background-color: #007BFF;
+            background-color:rgb(0, 255, 162);
             color: #fff;
         }
         .card-container {

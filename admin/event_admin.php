@@ -44,7 +44,7 @@ if (!$result) {
         header {
             text-align: center;
             padding: 0.5rem ;
-            background-color: #007BFF;
+            background-color:rgb(0, 255, 128);
             color: #fff;
         }
         .card-container {
